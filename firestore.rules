@@ -1,0 +1,48 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    function isAdmin() {
+      return isAuthenticated() &&
+        ((request.auth.token.email == "info@thaipet.co.th" || request.auth.token.email == "admin@cubix.co.th") && 
+         request.auth.token.email_verified == true);
+    }
+
+    function isValidVector(data) {
+      return data.id is string;
+    }
+
+    // ===============================================================
+    // Collection: test
+    // ===============================================================
+    match /test/{document=**} {
+      allow read: if true;
+    }
+
+    // ===============================================================
+    // Collection: vectorObject
+    // ===============================================================
+    match /vectorObject/{vectorId} {
+      // Allow public read
+      allow read: if true;
+      
+      // Allow create if authenticated
+      allow create: if isAuthenticated() && isValidVector(request.resource.data);
+      
+      // Allow update/delete if admin or owner
+      allow update: if isAuthenticated() && (isAdmin() || (resource.data.ownerId == request.auth.uid));
+      allow delete: if isAuthenticated() && (isAdmin() || (resource.data.ownerId == request.auth.uid));
+    }
+  }
+}

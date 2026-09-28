@@ -1,0 +1,51 @@
+{
+  "entities": {
+    "VectorObject": {
+      "title": "Vector Object",
+      "description": "A 3D object containing multiple vector representations.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "description": "Unique identifier for the object."
+        },
+        "v1": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "First vector representation."
+        },
+        "v2": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "Second vector representation."
+        },
+        "v3": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "Third vector representation."
+        },
+        "v4": {
+          "type": "array",
+          "items": { "type": "number" },
+          "description": "Fourth vector representation."
+        },
+        "ownerId": {
+          "type": "string",
+          "description": "UID of the user who owns this object."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "ISO 8601 timestamp of when the object was created."
+        }
+      },
+      "required": ["id", "ownerId"]
+    }
+  },
+  "firestore": {
+    "/vectorObject/{vectorId}": {
+      "schema": "VectorObject",
+      "description": "Collection of vector objects."
+    }
+  }
+}

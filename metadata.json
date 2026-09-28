@@ -1,0 +1,5 @@
+{
+  "name": "Object Vision",
+  "description": "A minimal 3D vector visualization tool using UMAP and Firestore.",
+  "requestFramePermissions": []
+}
