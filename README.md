@@ -34,6 +34,6 @@
 ### 2. โคลนโปรเจกต์และติดตั้ง Dependencies
 
 ```bash
-git clone <URL-ของ-repository-คุณ>
+git clone https://github.com/Panutle/similarity_space
 cd <ชื่อโฟลเดอร์>
 npm install
