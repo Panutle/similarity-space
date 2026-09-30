@@ -51,6 +51,6 @@
 
 ### 2. โคลนและติดตั้ง Dependencies
 ```bash
-git clone [https://github.com/Panutle/similarity_space.git](https://github.com/Panutle/similarity_space.git)
+git clone [https://github.com/Panutle/similarity-space.git](https://github.com/Panutle/similarity-space.git)
 cd similarity_space
 npm install
